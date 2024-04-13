@@ -20,16 +20,17 @@ type ProductProps = {
 
 const ItemProduct = memo(({ item }: ProductProps) => (
 	<Fragment>
-		<Link href={`./ProductDetail/${item.id}`} target="_blank" className='item-product'>
-
+		<div className='item-product'>
 			<div className="item-detail">
-				<Image
-					src={item.image}
-					alt={item.description}
-					width={300}
-					height={200}
-					loading="lazy"
-				/>
+				<Link href={`./ProductDetail/${item.id}`} target="_blank">
+					<Image
+						src={item.image}
+						alt={item.description}
+						width={300}
+						height={200}
+						loading="lazy"
+					/>
+				</Link>
 				<span>{item.name}</span>
 				<p>{item.description}</p>
 				<p>{item.price}</p>
@@ -39,10 +40,7 @@ const ItemProduct = memo(({ item }: ProductProps) => (
 				<p>category: {item.category}</p>
 			</div>
 			<button>Add to cart</button>
-
-
-		</Link>
-
+		</div>
 	</Fragment>
 ));
 
