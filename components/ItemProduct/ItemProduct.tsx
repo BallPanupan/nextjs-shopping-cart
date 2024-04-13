@@ -30,7 +30,7 @@ const ItemProduct = memo(({ item }: ProductProps) => (
 				/>
 				<span>{item.name}</span>
 				<p>{item.description}</p>
-				<p>{item.price}</p>
+				<p>price: {item.price}</p>
 				<p>rating: {item.rating}</p>
 				<p>stock: {item.stock}</p>
 				<p>brand: {item.brand}</p>
