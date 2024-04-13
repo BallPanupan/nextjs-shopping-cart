@@ -69,8 +69,6 @@ export default function ProductDetail() {
   }
 
   return (
-
-
     <div>
       <Layout>
         <Head>
@@ -97,10 +95,9 @@ export default function ProductDetail() {
                 <div className="col-sm">
 
                   <div className='product-detail'>
-                    <h1>About Page</h1>
                     {/* Select: {session} */}
-                    productId: {productId}
-                    <p>raw detail: {detail?.title}</p>
+                    {/* productId: {productId} */}
+                    {/* <p>raw detail: {detail?.title}</p> */}
                     <div className='item-product'>
                       <div className="item-detail">
                         <div >
@@ -119,6 +116,8 @@ export default function ProductDetail() {
                         <p>stock: {detail?.stock}</p>
                         <p>brand: {detail?.brand}</p>
                         <p>category: {detail?.category}</p>
+                  			<button>Add to cart</button>
+
                       </div>
                       <MultiImage/>
 
@@ -132,9 +131,6 @@ export default function ProductDetail() {
             </div>
 
           </div>
-
-
-
 
 
         </div>
