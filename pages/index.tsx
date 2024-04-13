@@ -24,8 +24,9 @@ export default function Home() {
 
 
 	useEffect(()=>{
-		setSelectCategorie(sharedState.message)
-	}, [sharedState])
+		setSelectCategorie(sharedState.selectcategorie)
+
+	}, [sharedState.selectcategorie])
 
 
 	return (
@@ -39,7 +40,6 @@ export default function Home() {
 
 				<h1>Welcome to Next.js Shopping Cart</h1>
 				<div className="content">
-					<ProductList products={[]} addToCart={addToCart} />
 					{/* <Cart cart={cart} removeFromCart={removeFromCart} /> */}
 
 
@@ -56,13 +56,8 @@ export default function Home() {
 								</div>
 								
 								<div className="col-sm">
-									show list of Product
+									<ProductList/>
 								</div>
-								
-								<div className="col-sm">
-									One of three columns
-								</div>
-							
 							
 							</div>
 						</div>

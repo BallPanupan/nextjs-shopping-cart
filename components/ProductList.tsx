@@ -1,28 +1,68 @@
-import React from 'react';
-import { Product } from '../types';
-import styles from '../styles/ProductList.module.css';
+import React, { useEffect, useState } from 'react';
+import ItemProduct from './ItemProduct/ItemProduct';
+import { useStateContext } from './StateContext';
 
-type ProductListProps = {
-  products: Product[];
-  addToCart: (product: Product) => void;
+type Item = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  price: number;
+  rating: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string
+}
+
+type FetchProducts = {
+  products: Item[];
+  total: number;
+  skip: number;
+  limit: number;
 };
 
-const ProductList = ({ products, addToCart }: ProductListProps) => (
-  <div className={styles.productList}>
-    {products.map((product) => (
-      <div key={product.id} className={styles.product}>
-        <img src={product.image} alt={product.name} className={styles.image} />
-        <div className={styles.details}>
-          <h3>{product.name}</h3>
-          <p>{product.description}</p>
-          <p>${product.price.toFixed(2)}</p>
-          <button onClick={() => addToCart(product)} className={styles.addToCartButton}>
-            Add to Cart
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-);
+async function fetchData(categories?: string) {
+  const byCategories = categories && categories !== 'all' ? `/category/${categories}` : ''
+  const url = `https://dummyjson.com/products` + byCategories;
+  const res = await fetch(url);
+  const data: any = await res.json();
+  return data || { products: [], total: 0, skip: 0, limit: 0 }
+}
+
+const ProductList = () => {
+  const { sharedState, setSharedState } = useStateContext();
+  const [items, setItems] = useState<FetchProducts>({ products: [], total: 0, skip: 0, limit: 0 });
+  useEffect(() => {
+    const fetchItems = async () => {
+      const data = await fetchData(sharedState.selectcategorie);
+      setItems(data);
+    };
+    fetchItems();
+  }, [sharedState.selectcategorie]);
+
+  return (
+    <div className="product-list">
+      {
+        items.products.map((item, index) => (
+          <ItemProduct
+            key={index}
+            item={{
+              id: item.id,
+              name: item.title,
+              description: item.description,
+              image: item.thumbnail,
+              price: item.price,
+              rating: item.rating,
+              stock: item.stock,
+              brand: item.brand,
+              category: item.category,
+            }}
+          />
+        ))
+      }
+    </div>
+  );
+};
 
 export default ProductList;

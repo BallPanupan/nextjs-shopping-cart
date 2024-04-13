@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 type SharedStateType = {
-  message?: string;
+  selectcategorie?: string;
+  cart?: []
 };
 
 type StateContextType = {
