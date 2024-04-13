@@ -1,14 +1,12 @@
+// category
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
-import Layout from '../components/Layout';
-import ProductList from '../components/ProductList';
-// import Cart from '../components/Cart';
-import { Product } from '../types';
-import Categories from '@/components/Categories';
 import { useStateContext } from '@/components/StateContext';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import Pagination from '@/components/Pagination';
+import Layout from '@/components/Layout';
+import Head from 'next/head';
+import Categories from '@/components/Categories';
+import Image from 'next/image';
+import ProductList from '@/components/ProductList';
 
 type Item = {
   id: number;
@@ -30,7 +28,9 @@ type FetchProducts = {
   limit: number;
 };
 
-export default function Home() {
+
+export default function Category() {
+  const { sharedState, setSharedState } = useStateContext();
 
 	const initialProducts: FetchProducts = {
 		products: [],
@@ -38,48 +38,30 @@ export default function Home() {
 		skip: 0,
 		limit: 0,
 	};
-
-	const { sharedState, setSharedState } = useStateContext();	
-	const [selectCategorie, setSelectCategorie] = useState<string | undefined>('');
 	const [products, setProducts] = useState<FetchProducts>(initialProducts);
-
 
   const router = useRouter();
   const { categoryId } = router.query;
 	const page = Number(router.query.page) ?? 0
 
-	const [cart, setCart] = useState<Product[]>([]);
-
-	const addToCart = (product: Product) => {
-		setCart([...cart, product]);
-	};
-
-	const removeFromCart = (productId: string) => {
-		setCart(cart.filter((product) => product.id !== productId));
-	};
-
-
-	async function fetchData(page?: number) {
-		const url = `https://dummyjson.com/products${Number(page) ? `?skip=${Math.min((Number(page) - 1) * 30, products.total)}` : `?skip=0`}&limit=30`;
-		console.log(url);
+	async function fetchData(categoryId?: string, page?: number) {
+		const url = `https://dummyjson.com/products/category${categoryId !== 'all' ? `/${categoryId}` : ''}${Number(page) ? `?skip=${Number(page) * 30}` : `?skip=0`}&limit=0`;
 		const res = await fetch(url);
 		const data = await res.json();
+		console.log(url)
+		console.log(data)
 		return data;
 	}
 
-	useEffect(() => {
-    const fetchProductDetail = async (page?: number) => {
-      const data = await fetchData(page || 0);
+  useEffect(() => {
+    const fetchProductDetail = async (categoryId?: string, page?: number) => {
+      const data = await fetchData(categoryId, page);
       setProducts(data);
     };
 
-		fetchProductDetail(Number(page));
-		setSelectCategorie(sharedState.selectcategorie)
+		fetchProductDetail(sharedState.selectcategorie, Number(page));
+  }, [categoryId, sharedState.selectcategorie, page]);
 
-  }, [page]);
-
-
-	console.log(products)
 
 	return (
 		<div>
@@ -95,7 +77,7 @@ export default function Home() {
 					{/* <Cart cart={cart} removeFromCart={removeFromCart} /> */}
 
 
-					<h2>Categorie: {selectCategorie || 'none'}</h2>
+					{/* <h2>Categorie: {selectCategorie || 'none'}</h2> */}
 
 
 					<div className="shopping">
@@ -108,8 +90,7 @@ export default function Home() {
 								</div>
 								
 								<div className="col-sm">
-									<ProductList data={products}/>
-									<Pagination total={products.total}/>
+									<ProductList data={products} />
 								</div>
 							
 							</div>

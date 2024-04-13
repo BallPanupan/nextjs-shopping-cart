@@ -95,3 +95,16 @@ a {
   max-height: none;
   min-height: none;
 }
+
+
+.pagination{
+  display: flex;
+  gap: 5px;
+  font-size: 1.4rem;
+  margin: 10px 0px;
+}
+
+.page-number {
+  display: flex;
+  gap: 15px;
+}

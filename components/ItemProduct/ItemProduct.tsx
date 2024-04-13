@@ -23,8 +23,7 @@ const ItemProduct = memo(({ item }: ProductProps) => (
 		<div className='item-product'>
 			<div className="item-detail">
 				<Link 
-					href={`./ProductDetail/${item.id}`} 
-					// target="_blank"
+					href={`/ProductDetail/${item.id}`} 
 				>
 					<Image
 						src={item.image}
