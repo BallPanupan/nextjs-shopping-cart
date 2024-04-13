@@ -111,7 +111,7 @@ export default function ProductDetail() {
                         </div>
                         <span>{detail?.title}</span>
                         <p>{detail?.description}</p>
-                        <p>{detail?.price}</p>
+                        <p>price: {detail?.price}</p>
                         <p>rating: {detail?.rating}</p>
                         <p>stock: {detail?.stock}</p>
                         <p>brand: {detail?.brand}</p>
