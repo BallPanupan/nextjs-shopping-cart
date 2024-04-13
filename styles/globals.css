@@ -56,8 +56,9 @@ a {
   flex-wrap: wrap;
 }
 
-.product-list button {
+.item-product button {
   height: 30px;
+  cursor: pointer;
 }
 
 .item-product {
@@ -83,5 +84,14 @@ a {
   display: flex;
   flex-direction: column;
   gap: 5px;
+}
 
+.product-detail {
+  width: 1000px;
+}
+
+.product-detail .item-product {
+  width: 1000px;
+  max-height: none;
+  min-height: none;
 }

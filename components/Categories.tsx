@@ -30,7 +30,7 @@ const Categories = ({ children }: any) => {
 			<div className="list-categories">
 				{
 					categories.map((data, index) => (
-						<Link key={index} href="" onClick={() => selectCategorie(data)}>{data}</Link>
+						<Link key={index} href="/" onClick={() => selectCategorie(data)}>{data}</Link>
 					))
 				}
 			</div>

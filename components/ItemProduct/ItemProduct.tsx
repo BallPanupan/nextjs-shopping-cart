@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { memo, Fragment } from "react";
 
 interface Product {
@@ -21,13 +22,18 @@ const ItemProduct = memo(({ item }: ProductProps) => (
 	<Fragment>
 		<div className='item-product'>
 			<div className="item-detail">
-				<Image
-					src={item.image}
-					alt={item.description}
-					width={300}
-					height={200}
-					loading="lazy"
-				/>
+				<Link 
+					href={`./ProductDetail/${item.id}`} 
+					// target="_blank"
+				>
+					<Image
+						src={item.image}
+						alt={item.description}
+						width={300}
+						height={200}
+						loading="lazy"
+					/>
+				</Link>
 				<span>{item.name}</span>
 				<p>{item.description}</p>
 				<p>price: {item.price}</p>
