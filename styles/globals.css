@@ -58,6 +58,7 @@ a {
 
 .product-list button {
   height: 30px;
+  cursor: pointer;
 }
 
 .item-product {
@@ -83,5 +84,5 @@ a {
   display: flex;
   flex-direction: column;
   gap: 5px;
-
+  cursor: pointer;
 }

@@ -6,13 +6,13 @@ export default function About() {
   const [session, setSession] = useState<string>();
 
   useEffect(() => {
-    setSession(sharedState.message);
+    // setSession(sharedState.message);
   }, [sharedState]);
 
   return (
     <div>
       <h1>About Page</h1>
-      Select: {session}
+      {/* Select: {session} */}
     </div>
   );
 }
