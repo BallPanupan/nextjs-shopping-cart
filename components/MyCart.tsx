@@ -1,8 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
 import { useStateContext } from "./StateContext";
 import { useEffect, useState } from "react";
-import ItemMyCart from "./itemMyCart";
+import ItemMyCart from "./ItemMyCart";
 
 const MyCart = () => {
 

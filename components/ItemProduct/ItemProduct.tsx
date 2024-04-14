@@ -69,4 +69,6 @@ const ItemProduct = memo(({ item }: ProductProps) => {
 	)
 });
 
+ItemProduct.displayName = 'ItemProduct';
+
 export default ItemProduct;
