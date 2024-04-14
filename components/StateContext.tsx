@@ -1,9 +1,16 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-type SharedStateType = {
+interface CartItem {
+  id: number;
+  title: string;
+  price: number;
+  qty: number;
+}
+
+interface SharedStateType {
   selectcategorie?: string;
-  cart?: []
-};
+  cart?: CartItem[];
+}
 
 type StateContextType = {
   sharedState: SharedStateType;

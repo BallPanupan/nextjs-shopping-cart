@@ -18,7 +18,6 @@ type FetchProducts = {
 };
 
 const ProductList = ({ data }: { data: FetchProducts }) => {
-  console.log('in ProductList: ', data);
   return (
     <div className="product-list">
       {data.products.map((item) => (
@@ -26,7 +25,7 @@ const ProductList = ({ data }: { data: FetchProducts }) => {
           key={item.id}
           item={{
             id: item.id,
-            name: item.title,
+            title: item.title,
             description: item.description,
             image: item.thumbnail,
             price: item.price,

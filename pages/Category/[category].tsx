@@ -48,8 +48,6 @@ export default function Category() {
 		const url = `https://dummyjson.com/products/category${categoryId !== 'all' ? `/${categoryId}` : ''}${Number(page) ? `?skip=${Number(page) * 30}` : `?skip=0`}&limit=0`;
 		const res = await fetch(url);
 		const data = await res.json();
-		console.log(url)
-		console.log(data)
 		return data;
 	}
 

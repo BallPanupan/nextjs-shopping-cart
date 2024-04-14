@@ -9,6 +9,7 @@ import { useStateContext } from '@/components/StateContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Pagination from '@/components/Pagination';
+import OnCart from '@/components/OnCart';
 
 type Item = {
   id: number;
@@ -61,7 +62,6 @@ export default function Home() {
 
 	async function fetchData(page?: number) {
 		const url = `https://dummyjson.com/products${Number(page) ? `?skip=${Math.min((Number(page) - 1) * 30, products.total)}` : `?skip=0`}&limit=30`;
-		console.log(url);
 		const res = await fetch(url);
 		const data = await res.json();
 		return data;
@@ -78,9 +78,6 @@ export default function Home() {
 
   }, [page]);
 
-
-	console.log(products)
-
 	return (
 		<div>
 			<Layout>
@@ -96,7 +93,9 @@ export default function Home() {
 
 
 					<h2>Categorie: {selectCategorie || 'none'}</h2>
-
+					<h3>
+						<OnCart/>
+					</h3>
 
 					<div className="shopping">
 

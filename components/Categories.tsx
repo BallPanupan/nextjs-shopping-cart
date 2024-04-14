@@ -23,7 +23,10 @@ const Categories = ({ children }: any) => {
 
 	const selectCategorie = (data: string): void => {
 		setSelectcategorie(data);
-		setSharedState({ selectcategorie: data })
+		setSharedState({ 
+			selectcategorie: data,
+			cart: sharedState.cart
+		})
 	}
 	return (
 		<div>

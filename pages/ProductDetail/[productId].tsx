@@ -46,8 +46,6 @@ export default function ProductDetail() {
     }
   }, [productId]);
 
-  console.log(detail);
-
   const MultiImage = () => {
     if (detail && detail.images.length > 0) {
       return (
