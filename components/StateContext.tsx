@@ -5,6 +5,7 @@ interface CartItem {
   title: string;
   price: number;
   qty: number;
+  thumbnail: string;
 }
 
 interface SharedStateType {

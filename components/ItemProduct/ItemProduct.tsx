@@ -24,7 +24,7 @@ const ItemProduct = memo(({ item }: ProductProps) => {
 	const { sharedState, setSharedState } = useStateContext();
 
 	const addToCart = (item: any): void => {
-
+		console.log('item', item);
 		setSharedState({
 			selectcategorie: sharedState?.selectcategorie || '',
 			cart: [
@@ -34,6 +34,7 @@ const ItemProduct = memo(({ item }: ProductProps) => {
 					title: item.title,
 					price: item.price,
 					qty: 1,
+					thumbnail: item.image
 				}
 			],
 		});

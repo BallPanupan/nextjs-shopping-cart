@@ -10,6 +10,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Pagination from '@/components/Pagination';
 import OnCart from '@/components/OnCart';
+import PaymentBtn from '@/components/PaymentBtn';
 
 type Item = {
   id: number;
@@ -43,22 +44,8 @@ export default function Home() {
 	const { sharedState, setSharedState } = useStateContext();	
 	const [selectCategorie, setSelectCategorie] = useState<string | undefined>('');
 	const [products, setProducts] = useState<FetchProducts>(initialProducts);
-
-
   const router = useRouter();
-  const { categoryId } = router.query;
 	const page = Number(router.query.page) ?? 0
-
-	const [cart, setCart] = useState<Product[]>([]);
-
-	const addToCart = (product: Product) => {
-		setCart([...cart, product]);
-	};
-
-	const removeFromCart = (productId: string) => {
-		setCart(cart.filter((product) => product.id !== productId));
-	};
-
 
 	async function fetchData(page?: number) {
 		const url = `https://dummyjson.com/products${Number(page) ? `?skip=${Math.min((Number(page) - 1) * 30, products.total)}` : `?skip=0`}&limit=30`;
@@ -87,16 +74,14 @@ export default function Home() {
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
 
-				<h1>Welcome to Next.js Shopping Cart</h1>
-				<div className="content">
-					{/* <Cart cart={cart} removeFromCart={removeFromCart} /> */}
-
-
-					<h2>Categorie: {selectCategorie || 'none'}</h2>
+				{/* <h1>Welcome to Next.js Shopping Cart</h1>
+				<h2>Categorie: {selectCategorie || 'none'}</h2>
 					<h3>
 						<OnCart/>
-					</h3>
-
+						<PaymentBtn/>
+					</h3> */}
+					
+				<div className="content">
 					<div className="shopping">
 
 						<div className="container app-center">

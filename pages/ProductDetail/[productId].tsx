@@ -35,6 +35,43 @@ export default function ProductDetail() {
     return data;
   }
 
+  const MultiImage = () => {
+    if (detail && detail.images.length > 0) {
+      return (
+        detail.images.map((data, index) => {
+          return (
+            <Image
+              key={index}
+              src={data || ''}
+              alt={detail?.description || ''}
+              width={720}
+              height={600}
+              loading="lazy"
+            />
+          )
+        })
+      )
+    }
+    return;
+  }
+
+  const addToCart = (item: any): void => {
+    console.log('item', item);
+    setSharedState({
+      selectcategorie: sharedState?.selectcategorie || '',
+      cart: [
+        ...sharedState.cart || [],
+        {
+          id: item.id,
+          title: item.title,
+          price: item.price,
+          qty: 1,
+          thumbnail: item.thumbnail
+        }
+      ],
+    });
+  };
+
   useEffect(() => {
     const fetchProductDetail = async (productId?: string) => {
       const data = await fetchData(productId);
@@ -46,26 +83,6 @@ export default function ProductDetail() {
     }
   }, [productId]);
 
-  const MultiImage = () => {
-    if (detail && detail.images.length > 0) {
-      return (
-        detail.images.map((data, index) => {
-          return (
-            <Image
-            key={index}
-            src={data || ''}
-            alt={detail?.description || ''}
-            width={720}
-            height={600}
-            loading="lazy"
-          />
-          )
-        })
-      )
-    }
-    return;
-  }
-
   return (
     <div>
       <Layout>
@@ -75,7 +92,6 @@ export default function ProductDetail() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <h1>Welcome to Next.js Shopping Cart</h1>
         <div className="content">
           {/* <Cart cart={cart} removeFromCart={removeFromCart} /> */}
           {/* <h2>Categorie: {selectCategorie || 'none'}</h2> */}
@@ -114,12 +130,14 @@ export default function ProductDetail() {
                         <p>stock: {detail?.stock}</p>
                         <p>brand: {detail?.brand}</p>
                         <p>category: {detail?.category}</p>
-                  			<button>Add to cart</button>
+                        <button onClick={() => { addToCart(detail) }}>Add to cart</button>
+
 
                       </div>
-                      <MultiImage/>
+                      <MultiImage />
 
-                      <button>Add to cart</button>
+                      <button onClick={() => { addToCart(detail) }}>Add to cart</button>
+
                     </div>
 
                   </div>

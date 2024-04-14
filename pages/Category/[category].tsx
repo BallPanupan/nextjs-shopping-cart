@@ -70,7 +70,6 @@ export default function Category() {
 					<link rel="icon" href="/favicon.ico" />
 				</Head>
 
-				<h1>Welcome to Next.js Shopping Cart</h1>
 				<div className="content">
 					{/* <Cart cart={cart} removeFromCart={removeFromCart} /> */}
 
