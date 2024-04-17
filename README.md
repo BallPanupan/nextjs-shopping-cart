@@ -39,9 +39,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Install on docker 
+## Build and Install on docker 
 ```bash
 docker build -t nextjs-shopping-cart .
 
-docker run -d -p 3000:3000 nextjs-shopping-cart
+docker run -p 80:80 nextjs-shopping-cart
 ```
